@@ -1,13 +1,20 @@
 #include "window.h"
 #include <functional>
 #include <list>
-
 #include "unit.h"
+#include "engine.h"
 
 using namespace mir;
 GameWindow::GameWindow()
 	:Engine(VideoMode(320, 240), "Game window"){
+	evl.push([this](Event& event) {
+		if (event.type == sf::Event::Closed)
+			window.close();
+	});
 
+	processor().push(unit);
+
+	bckg.loadFromFile("img/bckg.bmp");
 }
 
 GameWindow::GameWindow(VideoMode mode, char * label)
@@ -16,12 +23,11 @@ GameWindow::GameWindow(VideoMode mode, char * label)
 		if (event.type == sf::Event::Closed)
 			window.close();
 	});
-	evl.push([this](Event& event) {
-		if (event.type == sf::Event::KeyPressed && event.key.code == Keyboard::A)
-			window.setPosition(Vector2i(20, 20));
-	});
 }
 
 void mir::GameWindow::iterate() {
+	bckg.setPosition(50, 50);
 	proc.process();
+	draw(bckg);
+	draw(unit);
 }

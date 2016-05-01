@@ -1,6 +1,6 @@
 #include "processor.h"
 #include <list>
-#include <windows.h>
+
 using namespace std;
 using namespace mir;
 Processor::Processor(int tickrate) {
@@ -31,15 +31,13 @@ int Processor::getSize() {
 }
 
 bool Processor::process(){
-	time.tickrate = time.clock.getElapsedTime().asMicroseconds();
-	time.clock.restart();
-	time.tickrate /= tickrate;
-
+	
+	
 	if (processes.size() == 0) return false;
 	list<list<Process*>::iterator> toRemove;
 	auto iter = processes.begin();
 	while (iter != processes.end()) {
-		if (!(*iter)->iterate(time)) toRemove.push_back(iter);
+		if (!(*iter)->iterate(timeStamp)) toRemove.push_back(iter);
 		iter++;
 	}
 
@@ -48,8 +46,18 @@ bool Processor::process(){
 		processes.erase(*riter);
 		riter++;
 	}
-
+	timeStamp.tickrate = clock.getElapsedTime().asMicroseconds();
+	timeStamp.tickrate /= tickrate;
+	clock.restart();
 	return true;
+}
+
+const TimeStamp & mir::Processor::getTimeStamp() {
+	return timeStamp;
+}
+
+const Clock & mir::Processor::getClock() {
+	return clock;
 }
 
 list<Process*>::iterator Processor::begin() {

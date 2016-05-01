@@ -1,8 +1,5 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include "object.h"
-#include "engine.h"
-#include "processor.h"
 #include <list>
 #include <functional>
 

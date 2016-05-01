@@ -1,7 +1,7 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include "event_listener.h"
 #include "processor.h"
-#include "object.h"
 #include <list>
 
 
@@ -22,7 +22,7 @@ namespace mir {
 		bool loop();
 		virtual void iterate() = 0;
 		virtual void eventProd();
-		void update();
+		virtual void update();
 		void draw(Drawable& drawable);
 	};
 }

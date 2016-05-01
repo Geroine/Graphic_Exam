@@ -32,6 +32,7 @@ void mir::Engine::update(){
 	auto iter = todraw.begin();
 	while (iter != todraw.end()) {
 		window.draw(**iter);
+		iter++;
 	}
 	todraw.clear();
 	window.display();

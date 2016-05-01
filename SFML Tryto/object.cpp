@@ -151,6 +151,7 @@ mir::Object & mir::Object::operator=(const Object & obj) {
 	depth = obj.depth;
 	frameIndex = obj.frameIndex;
 	frames = obj.frames;
+	return *this;
 }
 
 bool mir::Object::isSolid() {
@@ -188,12 +189,30 @@ Sprite mir::Object::getSprite(int index) {
 }
 
 Vector2u mir::Object::getTextureSize() {
-	Texture txt = *getTexture();
-	return txt.getSize();
+	return getTexture()->getSize();
 }
 
 void mir::Object::setSprite(const Sprite & spr) {
 	Sprite::operator=(spr);
 	frames.clear();
 	frameIndex = UnknownFrame;
+}
+
+
+void mir::Object::loadFromImage(const Image & img) {
+	texture.loadFromImage(img);
+	setTexture(texture);
+}
+
+void mir::Object::loadFromFile(char * filename) {
+	Image img;
+	img.loadFromFile(filename);
+	loadFromImage(img);
+}
+
+void mir::Object::loadFromFile(char * filename, Color mask) {
+	Image img;
+	img.loadFromFile(filename);
+	img.createMaskFromColor(mask);
+	loadFromImage(img);
 }

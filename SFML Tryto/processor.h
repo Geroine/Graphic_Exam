@@ -6,7 +6,7 @@ using namespace sf;
 namespace mir {
 
 	struct TimeStamp {
-		int tickrate;
+		float tickrate;
 		Clock clock;
 		TimeStamp() {
 			tickrate = 0;
@@ -23,7 +23,8 @@ namespace mir {
 	class Processor {
 		list<Process*> processes;
 		int tickrate;
-		TimeStamp time;
+		TimeStamp timeStamp;
+		Clock clock;
 	public:
 		Processor(int tickrate = 800);
 		void push(Process& proc);
@@ -31,6 +32,8 @@ namespace mir {
 		void clear();
 		int getSize();
 		bool process();
+		const TimeStamp& getTimeStamp();
+		const Clock& getClock();
 
 		list<Process*>::iterator begin();
 		list<Process*>::iterator end();

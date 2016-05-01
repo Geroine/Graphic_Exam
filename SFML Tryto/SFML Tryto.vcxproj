@@ -149,16 +149,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="animation.cpp" />
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="event_listener.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="object_container.cpp" />
     <ClCompile Include="processor.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="unit.cpp" />
     <ClCompile Include="window.cpp" />
     <ClCompile Include="window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="animation.h" />
     <ClInclude Include="engine.h" />
     <ClInclude Include="event_listener.h" />
     <ClInclude Include="object.h" />

@@ -1,8 +1,7 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include "processor.h"
 #include <vector>
 #include <functional>
+#include "engine.h"
 using namespace std;
 using namespace sf;
 
@@ -20,6 +19,7 @@ namespace mir {
 		void setFrame(int index, const Frame& frame);
 	};
 	class ObjectGroup;
+
 	class Object: public Sprite{
 	protected:
 		FrameContainer frames;
@@ -27,7 +27,7 @@ namespace mir {
 		bool solid;
 		int depth;
 		ObjectGroup* group;
-
+		Texture texture;
 	public:
 		enum {
 			FullFrame = -1,
@@ -61,6 +61,9 @@ namespace mir {
 
 		void setSprite(const Sprite& spr);
 
+		void loadFromImage(const Image& img);
+		void loadFromFile(char* filename);
+		void loadFromFile(char* filename, Color mask);
 		/* Ìועמהû הכÿ נאבמעû ס פנוילאלט סןנאיעא */
 		void snapToFrame(int w, int h);
 		void pushFrame(const Frame& frame);

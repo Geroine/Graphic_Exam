@@ -1,6 +1,12 @@
 #pragma once
 #include "object.h"
-
-class Unit {
-
-};
+#include "processor.h"
+#include "animation.h"
+namespace mir {
+	class Unit : public Object , public Process {
+	public:
+		Timer timer;
+		Unit();
+		bool iterate(const TimeStamp& time);
+	};
+}
