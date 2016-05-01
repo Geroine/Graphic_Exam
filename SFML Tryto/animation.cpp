@@ -86,6 +86,7 @@ unsigned mir::Timer::getMs() {
 mir::Timer::Timer() {
 	tickrate = 0;
 	tickrateStart = 0;
+	tickratePause = 0;
 	state = ANIM_STOP;
 }
 
@@ -93,20 +94,24 @@ void mir::Timer::start() {
 	update();
 	state = ANIM_PLAY;
 	tickrateStart = getMs();
+	tickrate = tickratePause;
 }
 
 void mir::Timer::pause() {
 	update();
+	tickratePause = tickrate;
 	state = ANIM_STOP;
 }
 
 void mir::Timer::reload() {
+	tickratePause = 0;
 	tickrate = 0;
+	tickrateStart = getMs();
 }
 
 void mir::Timer::update() {
 	if (state == ANIM_PLAY){
-			tickrate += getMs() - tickrateStart;
+			tickrate = (getMs() - tickrateStart + tickratePause);
 	}
 }
 

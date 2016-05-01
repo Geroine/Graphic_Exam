@@ -17,6 +17,7 @@ namespace mir {
 		unsigned tickrateStart;
 		unsigned tickrate;
 		unsigned state;
+		unsigned tickratePause;
 
 		unsigned getMs();
 	public:
