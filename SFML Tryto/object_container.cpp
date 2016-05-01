@@ -67,7 +67,7 @@ list<Object*>::iterator ObjectGroup::end() {
 	return objects.end();
 }
 
-void ObjectGroup::iterateAll(int time) {
+void ObjectGroup::iterateAll(const TimeStamp& time) {
 	_clean();
 	auto iter = objects.begin();
 	while (iter != objects.end()) {
@@ -76,7 +76,7 @@ void ObjectGroup::iterateAll(int time) {
 	}
 }
 
-void mir::ObjectGroup::drawAll(RenderWindow & screen) {
+void mir::ObjectGroup::drawAll(Engine & window) {
 	vector<int> depthList;
 	int curDepth;
 	foreach([&depthList](Object& obj) {
@@ -84,9 +84,9 @@ void mir::ObjectGroup::drawAll(RenderWindow & screen) {
 	});
 	for (int i = 0; i < depthList.size(); i++) {
 		curDepth = depthList[i];
-		foreach([&curDepth, &screen](Object& obj) {
+		foreach([&curDepth, &window](Object& obj) {
 			if (curDepth == obj.getDepth()) {
-				screen.draw(obj);
+				window.draw(obj);
 			}
 		});
 	}
@@ -116,7 +116,7 @@ list<Object*> ObjectGroup::find(bool_obj_func func) {
 	return find_objects;
 }
 
-bool ObjectGroup::iterate(int time) {
+bool ObjectGroup::iterate(const TimeStamp& time) {
 	_clean();
 	iterateAll(time);
 	return true;

@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "processor.h"
 #include <vector>
+#include <functional>
 using namespace std;
 using namespace sf;
 
@@ -76,7 +78,7 @@ namespace mir {
 		/* Переопределенные методы */
 		void setTextureRect(const Frame& frame);
 
-		virtual bool iteration(int time) { return false; };
+		virtual bool iteration(const TimeStamp& time) { return false; };
 
 	protected:
 		void _setTextureRect(const Frame& frame);

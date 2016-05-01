@@ -1,4 +1,5 @@
 #include "object.h"
+#include <functional>
 using namespace std;
 using namespace sf;
 

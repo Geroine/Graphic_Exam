@@ -2,6 +2,7 @@
 #include <list>
 #include <windows.h>
 using namespace std;
+using namespace mir;
 Processor::Processor(int tickrate) {
 	this->tickrate = tickrate;
 }
@@ -30,9 +31,9 @@ int Processor::getSize() {
 }
 
 bool Processor::process(){
-	time = clock.getElapsedTime().asMicroseconds();
-	clock.restart();
-	time /= tickrate;
+	time.tickrate = time.clock.getElapsedTime().asMicroseconds();
+	time.clock.restart();
+	time.tickrate /= tickrate;
 
 	if (processes.size() == 0) return false;
 	list<list<Process*>::iterator> toRemove;

@@ -149,6 +149,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="engine.cpp" />
+    <ClCompile Include="event_listener.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="object_container.cpp" />
     <ClCompile Include="processor.cpp" />
@@ -157,9 +159,12 @@
     <ClCompile Include="window.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="engine.h" />
+    <ClInclude Include="event_listener.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="object_container.h" />
     <ClInclude Include="processor.h" />
+    <ClInclude Include="unit.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

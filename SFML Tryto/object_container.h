@@ -1,16 +1,18 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "object.h"
+#include "engine.h"
+#include "processor.h"
 #include <list>
 #include <functional>
 
-
+using namespace sf;
 
 namespace mir {
 	typedef function<void(Object&)> void_obj_func;
 	typedef function<bool(Object&)> bool_obj_func;
 
-	class ObjectGroup {
+	class ObjectGroup : public Process{
 		list<Object*> objects;
 		list<Object*> trashBag;
 	protected:
@@ -28,12 +30,12 @@ namespace mir {
 		list<Object*>::iterator begin();
 		list<Object*>::iterator end();
 
-		void iterateAll(int time);
-		void drawAll(RenderWindow& screen);
+		void iterateAll(const TimeStamp& time);
+		void drawAll(Engine& window);
 		// Алгоритмы для группы
 		void foreach(void_obj_func func);
 		list<Object*> find(bool_obj_func func);
 
-		bool iterate(int time);
+		bool iterate(const TimeStamp& time);
 	};
 }
